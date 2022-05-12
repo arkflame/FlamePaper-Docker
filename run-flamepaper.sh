@@ -11,7 +11,7 @@ echo "==============================+===="
 
 while true
 do
-    java -Xms$MEMORY -Xmx$MEMORY -XX:+UseG1GC -XX:+DisableExplicitGC -jar ${JAR} nogui
+    java -Xms$MEMORY -Xmx$MEMORY -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -jar ${JAR} nogui --noconsole
     if [ "$RESTART" = "true" ]; then
         echo "Server stopped, restarting instance in 3 seconds..."
         sleep 3
