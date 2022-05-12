@@ -1,8 +1,8 @@
-# FlameCord Official Dockerfile by 2LStudios.
+# FlamePaper Official Dockerfile by 2LStudios.
 # Based on https://github.com/itzg/docker-bungeecord
 
-# Using java-17 as base.
-ARG BASE_IMAGE=eclipse-temurin:17
+# Using java-8 as base.
+ARG BASE_IMAGE=eclipse-temurin:8
 FROM ${BASE_IMAGE}
 
 VOLUME ["/server"]
@@ -23,14 +23,14 @@ RUN apt-get update \
     && apt-get clean
 
 # Set default user and group
-RUN addgroup --gid 1000 flamecord \
-  && adduser --system --shell /bin/false --uid 1000 --ingroup flamecord --home /server flamecord
+RUN addgroup --gid 1000 flamepaper \
+  && adduser --system --shell /bin/false --uid 1000 --ingroup flamepaper --home /server flamepaper
 
 # Default env variables
-ENV RESTART=false MEMORY=512m PORT=25577 
+ENV RESTART=false MEMORY=1G PORT=25565 
 EXPOSE $PORT
 
 # Command to run in the container
-CMD ["/usr/bin/run-flamecord.sh"]
+CMD ["/usr/bin/run-flamepaper.sh"]
 
 COPY *.sh /usr/bin/
