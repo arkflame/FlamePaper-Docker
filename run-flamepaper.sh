@@ -11,7 +11,7 @@ echo "==============================+===="
 
 while true
 do
-    java -jar ${JAR} nogui -Xms$MEMORY -Xmx$MEMORY -XX:+UseG1GC -XX:+DisableExplicitGC
+    java -Xms$MEMORY -Xmx$MEMORY -XX:+UseG1GC -XX:+DisableExplicitGC -jar ${JAR} nogui
     if [ "$RESTART" = "true" ]; then
         echo "Server stopped, restarting instance in 3 seconds..."
         sleep 3
